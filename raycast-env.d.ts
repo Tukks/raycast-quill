@@ -16,7 +16,10 @@ declare namespace Preferences {
   /** Preferences accessible in the `fix-grammar` command */
   export type FixGrammar = ExtensionPreferences & {}
   /** Preferences accessible in the `rephrase` command */
-  export type Rephrase = ExtensionPreferences & {}
+  export type Rephrase = ExtensionPreferences & {
+  /** Default Tone - Tone used until you pick one from the action panel; after that, the last tone you picked is used. */
+  "defaultTone": "default" | "professional" | "casual" | "friendly" | "formal" | "concise"
+}
   /** Preferences accessible in the `ocr-screenshot` command */
   export type OcrScreenshot = ExtensionPreferences & {}
 }

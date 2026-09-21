@@ -7,7 +7,7 @@ Fix grammar, rephrase text and copy text from screenshots with Apple Intelligenc
 | Command | What it does |
 | --- | --- |
 | **Fix Grammar** | Corrects spelling and grammar in the selected text and replaces it in place. |
-| **Rephrase** | Rewrites the selected text with different words. Press Enter to replace the selection, or copy the result. |
+| **Rephrase** | Rewrites the selected text with different words. Press Enter to replace the selection, or copy the result. Pick a tone (professional, casual, friendly, formal, concise) with `⌘T`; the last one you picked is remembered, and the command's preferences set the starting tone. |
 | **OCR Screenshot** | Select a region of the screen and copy the text in it to the clipboard. |
 
 Quill detects the language of your text and answers in the same language; it never translates.
