@@ -4,11 +4,20 @@ import { rm } from "fs/promises";
 import { tmpdir } from "os";
 import { join } from "path";
 import { promisify } from "util";
-import { Clipboard, open, showHUD, showToast, Toast } from "@raycast/api";
+import {
+  Clipboard,
+  closeMainWindow,
+  open,
+  showHUD,
+  showToast,
+  Toast,
+} from "@raycast/api";
 import { fmOcr, LicenseNotAgreedError } from "./fm";
 import { showLicenseToast } from "./license";
 
 const execFileAsync = promisify(execFile);
+// Time for Raycast's window to finish fading out before the capture starts.
+const WINDOW_HIDE_DELAY_MS = 250;
 const SCREEN_RECORDING_SETTINGS =
   "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture";
 
@@ -16,6 +25,8 @@ export default async function OcrScreenshot() {
   const imagePath = join(tmpdir(), `quill-ocr-${Date.now()}.png`);
 
   try {
+    await closeMainWindow();
+    await new Promise((resolve) => setTimeout(resolve, WINDOW_HIDE_DELAY_MS));
     await execFileAsync("/usr/sbin/screencapture", ["-i", "-x", imagePath]);
     if (!existsSync(imagePath)) return;
 
